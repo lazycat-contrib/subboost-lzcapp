@@ -1,0 +1,13 @@
+params:
+  - id: local_setup_token
+    type: secret
+    name: "Initial setup token"
+    description: "Token used once to create the first SubBoost administrator account"
+    default_value: "$random(len=32)"
+    optional: false
+
+locales:
+  zh:
+    local_setup_token:
+      name: "初始设置令牌"
+      description: "首次创建 SubBoost 管理员账号时使用的令牌"

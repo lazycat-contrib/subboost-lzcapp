@@ -1,0 +1,18 @@
+package: community.lazycat.app.subboost
+version: 2.8.1
+name: SubBoost
+description: "Clash/Mihomo subscription conversion, enhancement, and management tool."
+min_os_version: 1.5.0
+author: SubBoost
+license: AGPL-3.0
+homepage: https://github.com/SubBoost/subboost
+permissions:
+  required:
+    - net.internet
+locales:
+  zh:
+    name: "SubBoost"
+    description: "Clash/Mihomo 订阅转换、增强和管理工具。通过 UI 可视化，一键实现链式代理、精确分流、防 DNS 泄露和多订阅聚合等高级功能。"
+  en:
+    name: "SubBoost"
+    description: "Clash/Mihomo subscription conversion, enhancement, and management tool."
