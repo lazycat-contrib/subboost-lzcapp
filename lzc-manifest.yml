@@ -5,7 +5,6 @@ application:
   upstreams:
     - location: /
       backend: http://app:3000/
-
 services:
   db:
     image: registry.lazycat.cloud/czyt/library/postgres:0b966445316029e8
@@ -22,10 +21,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
-
   app:
-    # upstream: ghcr.io/subboost/subboost:2.8.1
-    image: ghcr.1ms.run/subboost/subboost:2.8.1
+    # upstream: ghcr.io/subboost/subboost:v2.8.1
+    image: ghcr.1ms.run/subboost/subboost:v2.8.1
     depends_on:
       - db
     environment:
@@ -36,7 +34,6 @@ services:
       - LOCAL_SETUP_TOKEN={{ .U.local_setup_token }}
       - TRUST_PROXY_HEADERS=true
       - APP_URL=https://{{ .S.AppDomain }}
-
   cron:
     # upstream: curlimages/curl:8.11.1
     image: docker.1ms.run/curlimages/curl:8.11.1
@@ -46,7 +43,6 @@ services:
       - CRON_SECRET={{ stable_secret "cron_secret" }}
     command: >-
       sh -c 'i=0; while true; do failed=0; if [ "$i" -le 0 ]; then echo "[local-cron] $(date -Iseconds) POST /api/cron/update-rule-index"; curl -fsS -X POST -H "Authorization: Bearer $CRON_SECRET" http://app:3000/api/cron/update-rule-index || failed=1; i=10; fi; echo "[local-cron] $(date -Iseconds) POST /api/cron/update-subscriptions"; curl -fsS -X POST -H "Authorization: Bearer $CRON_SECRET" http://app:3000/api/cron/update-subscriptions || failed=1; i=$((i - 1)); if [ "$failed" -ne 0 ]; then echo "[local-cron] one or more endpoints failed; restarting after delay" >&2; sleep 30; exit 1; fi; sleep 360; done'
-
 usage: |-
   首次打开后，请访问 /login#setup-token=<安装时设置的初始设置令牌>，然后创建管理员账号。
   应用用于 Clash/Mihomo 订阅转换、增强与管理，支持链式代理、精确分流、防 DNS 泄露和多订阅聚合。
