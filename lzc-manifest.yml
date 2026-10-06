@@ -22,8 +22,8 @@ services:
       timeout: 5s
       retries: 10
   app:
-    # upstream: ghcr.io/subboost/subboost:v2.8.1
-    image: ghcr.1ms.run/subboost/subboost:v2.8.1
+    # upstream: ghcr.io/subboost/subboost:v2.9.0
+    image: ghcr.1ms.run/subboost/subboost:v2.9.0
     depends_on:
       - db
     environment:
