@@ -1,5 +1,5 @@
 package: community.lazycat.app.subboost
-version: 2.10.0
+version: 2.11.0
 name: SubBoost
 description: "Clash/Mihomo subscription conversion, enhancement, and management tool."
 min_os_version: 1.5.0
